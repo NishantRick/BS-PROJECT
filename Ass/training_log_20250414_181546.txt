@@ -1,0 +1,15 @@
+Episode	TotalReward	Steps	Collisions	SuccessRate	Timeout
+1	-249.2	10	24	0.00	False
+2	-391.0	17	38	0.00	False
+3	-346.8	12	34	0.00	False
+4	-70.2	2	7	0.00	False
+5	-630.4	21	62	0.00	False
+6	-772.8	25	76	0.00	False
+7	-209.0	10	20	0.00	False
+8	-456.6	18	44	0.00	False
+9	-1655.4	55	163	0.00	False
+10	-242.4	9	24	0.00	False
+11	-871.4	33	85	0.00	False
+12	-550.0	27	53	0.00	False
+13	-699.6	34	68	0.00	False
+14	-596.8	22	59	0.00	False
