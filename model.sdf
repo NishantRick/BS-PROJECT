@@ -1,0 +1,205 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='autonomous_drone'>
+    <!-- Base drone parameters -->
+    <link name='base_link'>
+      <pose>0 0 0.1 0 0 0</pose>
+      <inertial>
+        <mass>1.5</mass>
+        <inertia>
+          <ixx>0.0347563</ixx>
+          <iyy>0.0458929</iyy>
+          <izz>0.0976733</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_collision'>
+        <geometry>
+          <box>
+            <size>0.3 0.3 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='base_visual'>
+        <geometry>
+          <box>
+            <size>0.3 0.3 0.2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.8 0.8 0.8 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Rotor 1 (Front Right) -->
+    <link name='rotor_1'>
+      <pose>0.15 -0.15 0.1 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.9 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Rotor 2 (Front left) -->
+    <link name='rotor_1'>
+      <pose>-0.15 -0.15 0.1 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.9 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Rotor 3 (Back right) -->
+    <link name='rotor_1'>
+      <pose>0.15 0.15 0.1 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.9 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Rotor 4 (back left) -->
+    <link name='rotor_1'>
+      <pose>-0.15 0.15 0.1 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.9 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+    <!-- Repeat for Rotors 2-4 with positions:
+         Rotor 2: -0.15 -0.15 (Front Left)
+         Rotor 3: 0.15 0.15 (Back Right)
+         Rotor 4: -0.15 0.15 (Back Left) -->
+
+    <!-- PX4 Interface Plugin -->
+    <plugin name='px4_interface' filename='libgazebo_px4_interface.so'>
+      <robotNamespace>/</robotNamespace>
+      <imuTopic>/mavros/imu/data_raw</imuTopic>
+      <gpsTopic>/mavros/gps_input/gps_input</gpsTopic>
+      <controlTopic>/mavros/setpoint_raw/attitude</controlTopic>
+      <mavlink_addr>127.0.0.1</mavlink_addr>
+      <mavlink_udp_port>14560</mavlink_udp_port>
+      <mavlink_tcp_port>4560</mavlink_tcp_port>
+    </plugin>
+
+    <!-- IMU Sensor -->
+    <plugin name='imu_plugin' filename='libgazebo_imu_plugin.so'>
+      <robotNamespace>/</robotNamespace>
+      <topicName>/mavros/imu/data_raw</topicName>
+      <bodyName>base_link</bodyName>
+      <updateRate>200</updateRate>
+    </plugin>
+
+    <!-- GPS Sensor -->
+    <plugin name='gps_plugin' filename='libgazebo_gps_plugin.so'>
+      <robotNamespace>/</robotNamespace>
+      <topicName>/mavros/gps_input/gps_input</topicName>
+      <gpsNoise>0.01</gpsNoise>
+      <updateRate>10</updateRate>
+    </plugin>
+
+    <!-- Motor Control -->
+    <plugin name='motor_control' filename='libgazebo_motor_control.so'>
+      <robotNamespace>/</robotNamespace>
+      <commandTopic>/mavros/setpoint_raw/attitude</commandTopic>
+      <motorJoint>rotor_1_joint</motorJoint>
+      <motorJoint>rotor_2_joint</motorJoint>
+      <motorJoint>rotor_3_joint</motorJoint>
+      <motorJoint>rotor_4_joint</motorJoint>
+    </plugin>
+  </model>
+</sdf>
